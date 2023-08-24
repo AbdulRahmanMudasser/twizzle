@@ -1,10 +1,20 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_chat_messenger_app/services/authentication/login_or_register.dart';
+import 'package:flutter_chat_messenger_app/services/authentication/auth_gate.dart';
+import 'package:flutter_chat_messenger_app/services/authentication/auth_service.dart';
+import 'package:provider/provider.dart';
 
 import 'config/app_size.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => AuthenticationService(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -21,8 +31,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: const LoginOrRegister(),
+      home: const AuthenticationGate(),
     );
   }
 }
-

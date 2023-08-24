@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_chat_messenger_app/config/app_size.dart';
-import 'package:flutter_chat_messenger_app/widgets/reusable_button.dart';
-import 'package:flutter_chat_messenger_app/widgets/reusable_text_field.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({
+import '../config/app_size.dart';
+import '../widgets/reusable_button.dart';
+import '../widgets/reusable_text_field.dart';
+
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({
     super.key,
     required this.onTap,
   });
@@ -12,16 +13,17 @@ class LoginPage extends StatefulWidget {
   final GestureTapCallback onTap;
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   // text controllers
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
 
-  // sign in user
-  void signIn() {}
+  // sign up user
+  void signUp() {}
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +37,7 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 // SizedBox(
-                //   height: AppSize.screenHeight * 0.02,
+                //   height: AppSize.screenHeight * 0.05,
                 // ),
 
                 // logo
@@ -49,9 +51,9 @@ class _LoginPageState extends State<LoginPage> {
                   height: AppSize.screenHeight * 0.05,
                 ),
 
-                // welcome back message
+                // create an account
                 const Text(
-                  "Welcome back you've been missed",
+                  "Let's create an account for you!",
                   style: TextStyle(
                     fontSize: 18,
                     // fontWeight: FontWeight.bold,
@@ -81,13 +83,24 @@ class _LoginPageState extends State<LoginPage> {
                 ),
 
                 SizedBox(
+                  height: getProportionateScreenHeight(10),
+                ),
+
+                // confirm password text field
+                ReusableTextField(
+                  controller: confirmPasswordController,
+                  hintText: "Confirm Password",
+                  obscureText: true,
+                ),
+
+                SizedBox(
                   height: getProportionateScreenHeight(25),
                 ),
 
-                // sign in button
+                // sign up button
                 ReusableButton(
-                  text: "Sign In",
-                  onTap: signIn,
+                  text: "Sign Up",
+                  onTap: signUp,
                 ),
 
                 SizedBox(
@@ -95,17 +108,17 @@ class _LoginPageState extends State<LoginPage> {
                 ),
 
                 // not a member? register now
-                 Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text("Not a member?"),
+                    const Text("Already a member?"),
                     const SizedBox(
                       width: 4,
                     ),
                     GestureDetector(
                       onTap: widget.onTap,
                       child: const Text(
-                        "Register now",
+                        "Login now",
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                     )

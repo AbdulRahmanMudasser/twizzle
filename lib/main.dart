@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_chat_messenger_app/pages/login_page.dart';
+import 'package:flutter_chat_messenger_app/services/authentication/login_or_register.dart';
 
 import 'config/app_size.dart';
 
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: LoginPage(),
+      home: const LoginOrRegister(),
     );
   }
 }

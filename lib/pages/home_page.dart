@@ -48,11 +48,15 @@ class _HomePageState extends State<HomePage> {
       stream: FirebaseFirestore.instance.collection('users').snapshots(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
-          return const Text('Error');
+          return const Center(
+            child: Text('Error'),
+          );
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Text('Loading');
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
         } else {
           return ListView(
             children: snapshot.data!.docs.map<Widget>((doc) => _buildUserListItem(doc)).toList(),

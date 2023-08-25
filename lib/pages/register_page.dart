@@ -61,7 +61,7 @@ class _RegisterPageState extends State<RegisterPage> {
         child: Center(
           child: SingleChildScrollView(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(25)),
+              padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(23)),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -85,7 +85,8 @@ class _RegisterPageState extends State<RegisterPage> {
                     "Let's create an account for you!",
                     style: TextStyle(
                       fontSize: 18,
-                      // fontWeight: FontWeight.bold,
+                      color: Color(0xff8f8e8e),
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
 
@@ -140,7 +141,13 @@ class _RegisterPageState extends State<RegisterPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text("Already a member?"),
+                      const Text(
+                        "Already a member?",
+                        style: TextStyle(
+                          color: Color(0xff8f8e8e),
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
                       const SizedBox(
                         width: 4,
                       ),

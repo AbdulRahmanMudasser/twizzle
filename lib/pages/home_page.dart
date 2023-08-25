@@ -28,8 +28,15 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey.shade200,
       appBar: AppBar(
-        title: const Text("Home Page"),
+        title: const Text(
+          "Messages",
+          style: TextStyle(
+            fontSize: 22,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
         actions: [
           // sign out button
           IconButton(
@@ -37,6 +44,8 @@ class _HomePageState extends State<HomePage> {
             icon: const Icon(Icons.logout),
           ),
         ],
+        foregroundColor: Colors.white,
+        backgroundColor: Colors.grey.shade800,
       ),
       body: _buildUserList(),
     );
@@ -48,11 +57,15 @@ class _HomePageState extends State<HomePage> {
       stream: FirebaseFirestore.instance.collection('users').snapshots(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
-          return const Text('Error');
+          return const Center(
+            child: Text('Error'),
+          );
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Text('Loading');
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
         } else {
           return ListView(
             children: snapshot.data!.docs.map<Widget>((doc) => _buildUserListItem(doc)).toList(),
@@ -70,6 +83,9 @@ class _HomePageState extends State<HomePage> {
     if (_firebaseAuth.currentUser!.email != data['email']) {
       return ListTile(
         title: Text(data['email']),
+        leading: const Icon(Icons.person),
+        horizontalTitleGap: 30,
+        contentPadding: EdgeInsets.symmetric(horizontal: 30),
         onTap: () {
           // pass the clicked user's UID to chat page
           Navigator.of(context).push(

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_messenger_app/services/chat/chat_service.dart';
+import 'package:flutter_chat_messenger_app/widgets/chat_bubble.dart';
 import 'package:flutter_chat_messenger_app/widgets/reusable_text_field.dart';
 
 class ChatPage extends StatefulWidget {
@@ -39,8 +40,27 @@ class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey.shade200,
       appBar: AppBar(
-        title: Text(widget.receiverUserEmail),
+        title: Text(
+          widget.receiverUserEmail,
+          style: const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        centerTitle: true,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            size: 20,
+          ),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+        foregroundColor: Colors.white,
+        backgroundColor: Colors.grey.shade800,
       ),
       body: SafeArea(
         child: Column(
@@ -52,6 +72,10 @@ class _ChatPageState extends State<ChatPage> {
 
             // user input
             _buildMessageInput(),
+
+            const SizedBox(
+              height: 25,
+            ),
           ],
         ),
       ),
@@ -103,14 +127,24 @@ class _ChatPageState extends State<ChatPage> {
         ? MainAxisAlignment.end
         : MainAxisAlignment.start;
 
+    Color backgroundColor =
+        (data['senderId'] == _firebaseAuth.currentUser!.uid) ? Colors.green : Colors.grey.shade600;
+
     return Container(
+      padding: const EdgeInsets.all(8),
       alignment: alignment,
       child: Column(
         crossAxisAlignment: crossAxisAlignment,
         mainAxisAlignment: mainAxisAlignment,
         children: [
-          Text(data['senderEmail']),
-          Text(data['message']),
+          // Text(data['senderEmail']),
+          // const SizedBox(
+          //   height: 5,
+          // ),
+          ChatBubble(
+            message: data['message'],
+            backgroundColor: backgroundColor,
+          ),
         ],
       ),
     );
@@ -118,26 +152,31 @@ class _ChatPageState extends State<ChatPage> {
 
   // build message input
   Widget _buildMessageInput() {
-    return Row(
-      children: [
-        // text field
-        Expanded(
-          child: ReusableTextField(
-            controller: _messageController,
-            hintText: 'Enter Message',
-            obscureText: false,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: Row(
+        children: [
+          // text field
+          Expanded(
+            child: ReusableTextField(
+              controller: _messageController,
+              hintText: 'Enter Message',
+              obscureText: false,
+              inChatRoom: true,
+            ),
           ),
-        ),
 
-        // send button
-        IconButton(
-          onPressed: sendMessage,
-          icon: const Icon(
-            Icons.arrow_upward,
-            size: 40,
+          // send button
+          IconButton(
+            onPressed: sendMessage,
+            icon: Icon(
+              Icons.arrow_circle_up,
+              size: 40,
+              color: Colors.grey.shade500,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

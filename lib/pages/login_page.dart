@@ -51,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
         child: Center(
           child: SingleChildScrollView(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(25)),
+              padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(23)),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -75,7 +75,8 @@ class _LoginPageState extends State<LoginPage> {
                     "Welcome back you've been missed",
                     style: TextStyle(
                       fontSize: 18,
-                      // fontWeight: FontWeight.bold,
+                      color: Color(0xff8f8e8e),
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
 
@@ -105,6 +106,27 @@ class _LoginPageState extends State<LoginPage> {
                     height: getProportionateScreenHeight(25),
                   ),
 
+                  GestureDetector(
+                    onTap: () {},
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          "Forgot Password?",
+                          style: TextStyle(
+                            fontSize: 15,
+                            color: Color(0xff8f8e8e),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  SizedBox(
+                    height: getProportionateScreenHeight(25),
+                  ),
+
                   // sign in button
                   ReusableButton(
                     text: "Sign In",
@@ -119,7 +141,13 @@ class _LoginPageState extends State<LoginPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text("Not a member?"),
+                      const Text(
+                        "Not a member?",
+                        style: TextStyle(
+                          color: Color(0xff8f8e8e),
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
                       const SizedBox(
                         width: 4,
                       ),
@@ -129,7 +157,7 @@ class _LoginPageState extends State<LoginPage> {
                           "Register now",
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ],

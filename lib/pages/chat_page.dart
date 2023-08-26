@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_chat_messenger_app/config/app_colors.dart';
 import 'package:flutter_chat_messenger_app/services/chat/chat_service.dart';
-import 'package:flutter_chat_messenger_app/widgets/chat_bubble.dart';
-import 'package:flutter_chat_messenger_app/widgets/reusable_text_field.dart';
+
+import '../components/widgets/chat_page/chat_bubble.dart';
+import '../components/widgets/reusable_text_field.dart';
 
 class ChatPage extends StatefulWidget {
   const ChatPage({
@@ -40,7 +42,7 @@ class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade200,
+      backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
         title: Text(
           widget.receiverUserEmail,

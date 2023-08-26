@@ -28,14 +28,14 @@ class ReusableTextField extends StatelessWidget {
       ),
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(
-          borderSide:  BorderSide(
-            color: Colors.grey.shade300,
+          borderSide: const BorderSide(
+            color: Colors.white,
           ),
           borderRadius: BorderRadius.circular(borderRadius),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(
-            color: Colors.white,
+          borderSide: BorderSide(
+            color: Colors.grey.shade400,
             width: 1,
           ),
           borderRadius: BorderRadius.circular(borderRadius),
@@ -43,8 +43,8 @@ class ReusableTextField extends StatelessWidget {
         fillColor: Colors.grey[200],
         filled: true,
         hintText: hintText,
-        hintStyle: const TextStyle(color: Colors.grey),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+        hintStyle: TextStyle(color: Colors.grey.shade500),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 30, vertical: 18),
       ),
     );
   }

@@ -92,7 +92,7 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  height: AppSize.screenHeight * 0.05,
+                  height: AppSize.screenHeight * 0.07,
                 ),
 
                 // logo
@@ -103,7 +103,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
 
                 SizedBox(
-                  height: AppSize.screenHeight * 0.06,
+                  height: AppSize.screenHeight * 0.07,
                 ),
 
                 // welcome back message
@@ -117,7 +117,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
 
                 SizedBox(
-                  height: getProportionateScreenHeight(50),
+                  height: getProportionateScreenHeight(30),
                 ),
 
                 // email text field
@@ -170,7 +170,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
 
                 SizedBox(
-                  height: getProportionateScreenHeight(50),
+                  height: getProportionateScreenHeight(60),
                 ),
 
                 // or continue with

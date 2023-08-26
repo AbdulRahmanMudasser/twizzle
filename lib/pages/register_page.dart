@@ -94,7 +94,7 @@ class _RegisterPageState extends State<RegisterPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  height: AppSize.screenHeight * 0.05,
+                  height: AppSize.screenHeight * 0.1,
                 ),
 
                 // logo
@@ -105,7 +105,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
 
                 SizedBox(
-                  height: AppSize.screenHeight * 0.05,
+                  height: AppSize.screenHeight * 0.08,
                 ),
 
                 // create an account
@@ -119,7 +119,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
 
                 SizedBox(
-                  height: getProportionateScreenHeight(50),
+                  height: getProportionateScreenHeight(30),
                 ),
 
                 // name text field
@@ -173,7 +173,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
 
                 SizedBox(
-                  height: getProportionateScreenHeight(50),
+                  height: getProportionateScreenHeight(40),
                 ),
 
                 // not a member? register now

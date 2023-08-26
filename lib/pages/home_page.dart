@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_chat_messenger_app/config/app_colors.dart';
 import 'package:flutter_chat_messenger_app/services/authentication/auth_service.dart';
 import 'package:provider/provider.dart';
 
@@ -17,6 +18,8 @@ class _HomePageState extends State<HomePage> {
   // instance of auth
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
+  // ScaffoldMessengerState scaffoldMessenger = ScaffoldMessengerState();
+
   // sign user out
   void signOut() {
     // get the auth service
@@ -28,7 +31,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade200,
+      backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
         title: const Text(
           "Messages",
@@ -47,7 +50,16 @@ class _HomePageState extends State<HomePage> {
         foregroundColor: Colors.white,
         backgroundColor: Colors.grey.shade800,
       ),
-      body: _buildUserList(),
+      body: Column(
+        children: [
+          const SizedBox(
+            height: 20,
+          ),
+          Expanded(
+            child: _buildUserList(),
+          ),
+        ],
+      ),
     );
   }
 
@@ -85,7 +97,7 @@ class _HomePageState extends State<HomePage> {
         title: Text(data['email']),
         leading: const Icon(Icons.person),
         horizontalTitleGap: 30,
-        contentPadding: EdgeInsets.symmetric(horizontal: 30),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 30),
         onTap: () {
           // pass the clicked user's UID to chat page
           Navigator.of(context).push(
@@ -104,3 +116,4 @@ class _HomePageState extends State<HomePage> {
     }
   }
 }
+

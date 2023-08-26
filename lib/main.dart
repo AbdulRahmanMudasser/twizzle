@@ -24,14 +24,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     AppSize().init(context);
 
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
       debugShowCheckedModeBanner: false,
-      home: const AuthenticationGate(),
+      home: AuthenticationGate(),
     );
   }
 }

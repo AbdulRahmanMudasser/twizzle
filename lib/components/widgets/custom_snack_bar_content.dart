@@ -8,10 +8,12 @@ class CustomSnackBarContent extends StatelessWidget {
     super.key,
     required this.text,
     this.errorSnackBar = true,
+    required this.title,
   });
 
   final String text;
   final bool errorSnackBar;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +24,12 @@ class CustomSnackBarContent extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           height: 90,
           decoration: BoxDecoration(
-            color: errorSnackBar ? const Color(0xffC72C41) : const Color(0xff4e8c7c),
-            borderRadius: const BorderRadius.all(Radius.circular(20)),
+            // color: errorSnackBar ? const Color(0xffC72C41) : const Color(0xff4e8c7c),
+            color: Colors.white,
+            borderRadius: const BorderRadius.all(Radius.circular(20),),
+            border: Border.all(
+              color: Colors.grey.shade200,
+            )
           ),
           child: Row(
             children: [
@@ -35,10 +41,10 @@ class CustomSnackBarContent extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      errorSnackBar ? 'Oh snap!' : 'Hi there!',
+                      title,
                       style: const TextStyle(
                         fontSize: 18,
-                        color: Colors.white,
+                        color: Colors.black,
                       ),
                     ),
                     const Spacer(),
@@ -46,7 +52,7 @@ class CustomSnackBarContent extends StatelessWidget {
                       text,
                       style: const TextStyle(
                         fontSize: 14,
-                        color: Colors.white,
+                        color: Colors.black,
                       ),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,

@@ -51,28 +51,52 @@ class _LoginPageState extends State<LoginPage> {
         passwordController.text,
       );
 
-      if (!mounted) return;
-      Navigator.of(context).pop();
-      showSuccessSnackBar('Successfully Logged In', scaffoldMessenger);
+      // pop the loading circle
+      if (context.mounted) Navigator.of(context).pop();
+
+      // show when successfully logged in
+      showSuccessSnackBar(
+        title: 'Hi There',
+        error: 'Successfully Logged In',
+        scaffoldMessenger: scaffoldMessenger,
+      );
     } catch (e) {
-      if (!mounted) return;
-      Navigator.of(context).pop();
-      showErrorSnackBar(e.toString(), scaffoldMessenger);
+      // pop the circle
+      if (context.mounted) Navigator.of(context).pop();
+
+      // show if there is any error
+      showErrorSnackBar(
+        error: e.toString(),
+        scaffoldMessenger: scaffoldMessenger,
+      );
     }
   }
 
   // google sign in
-  void googleSignIn() {
-    ScaffoldMessengerState scaffoldMessenger = ScaffoldMessengerState();
+  googleSignIn() async {
+    ScaffoldMessengerState scaffoldMessenger = ScaffoldMessenger.of(context);
 
     try {
-      AuthenticationService().signInWithGoogle();
-      showSuccessSnackBar('Successfully Signed In', scaffoldMessenger);
+      print("Starting Google Sign In");
+
+      await AuthenticationService().signInWithGoogle();
+
+      // show if successfully signed in
+      showSuccessSnackBar(
+        title: 'Hi There',
+        error: 'Successfully Signed In',
+        scaffoldMessenger: scaffoldMessenger,
+      );
     } catch (e) {
-      showErrorSnackBar(e.toString(), scaffoldMessenger);
+      // show if there is any error
+      showErrorSnackBar(
+        error: e.toString(),
+        scaffoldMessenger: scaffoldMessenger,
+      );
     }
   }
 
+  // dispose controllers
   @override
   void dispose() {
     emailController.dispose();
@@ -142,6 +166,7 @@ class _LoginPageState extends State<LoginPage> {
                   height: getProportionateScreenHeight(30),
                 ),
 
+                // forgot password?
                 GestureDetector(
                   onTap: () {},
                   child: Row(

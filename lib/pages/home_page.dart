@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_chat_messenger_app/components/methods/snack_bar.dart';
 import 'package:flutter_chat_messenger_app/config/app_colors.dart';
 import 'package:flutter_chat_messenger_app/services/authentication/auth_service.dart';
 import 'package:provider/provider.dart';
@@ -18,14 +19,20 @@ class _HomePageState extends State<HomePage> {
   // instance of auth
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
-  // ScaffoldMessengerState scaffoldMessenger = ScaffoldMessengerState();
-
   // sign user out
   void signOut() {
+    ScaffoldMessengerState scaffoldMessenger = ScaffoldMessenger.of(context);
+
     // get the auth service
     final authenticationService = Provider.of<AuthenticationService>(context, listen: false);
 
     authenticationService.signOut();
+
+    showSuccessSnackBar(
+      title: 'Signed Out',
+      error: 'See You Later',
+      scaffoldMessenger: scaffoldMessenger,
+    );
   }
 
   @override
@@ -116,4 +123,3 @@ class _HomePageState extends State<HomePage> {
     }
   }
 }
-

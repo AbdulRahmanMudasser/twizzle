@@ -31,12 +31,6 @@ class _RegisterPageState extends State<RegisterPage> {
   void signUp() async {
     ScaffoldMessengerState scaffoldMessenger = ScaffoldMessenger.of(context);
 
-    if (passwordController.text != confirmPasswordController.text) {
-      showErrorSnackBar("Passwords Do Not Match", scaffoldMessenger);
-
-      return;
-    }
-
     // show loading circle
     showDialog(
       context: context,
@@ -46,6 +40,16 @@ class _RegisterPageState extends State<RegisterPage> {
         );
       },
     );
+
+    // show error if passwords do not match
+    if (passwordController.text != confirmPasswordController.text) {
+      showErrorSnackBar(
+        error: "Passwords Do Not Match",
+        scaffoldMessenger: scaffoldMessenger,
+      );
+
+      return;
+    }
 
     // get auth service
     final authenticationService = Provider.of<AuthenticationService>(context, listen: false);
@@ -62,17 +66,27 @@ class _RegisterPageState extends State<RegisterPage> {
 
       // showErrorSnackBar('Email Verification Sent!', scaffoldMessenger);
 
-      if (!mounted) return;
-      Navigator.of(context).pop();
-      showSuccessSnackBar('Successfully Signed Up', scaffoldMessenger);
-    } catch (e) {
-      showErrorSnackBar(e.toString(), scaffoldMessenger);
+      // pop loading circle
+      if (context.mounted) Navigator.of(context).pop();
 
-      if (!mounted) return;
-      Navigator.of(context).pop();
+      // show when successfully signed up
+      showSuccessSnackBar(
+        error: 'Successfully Signed Up',
+        scaffoldMessenger: scaffoldMessenger,
+      );
+    } catch (e) {
+      // pop loading circle
+      if (context.mounted) Navigator.of(context).pop();
+
+      // show if there is any error
+      showErrorSnackBar(
+        error: e.toString(),
+        scaffoldMessenger: scaffoldMessenger,
+      );
     }
   }
 
+  // dispose controllers
   @override
   void dispose() {
     nameController.dispose();

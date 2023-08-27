@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_chat_messenger_app/config/app_colors.dart';
 import 'package:flutter_chat_messenger_app/services/chat/chat_service.dart';
 
+import '../components/methods/message_input.dart';
 import '../components/widgets/chat_page/chat_bubble.dart';
-import '../components/widgets/reusable_text_field.dart';
 
 class ChatPage extends StatefulWidget {
   const ChatPage({
@@ -73,10 +73,14 @@ class _ChatPageState extends State<ChatPage> {
             ),
 
             // user input
-            _buildMessageInput(),
+            buildMessageInput(
+              hintText: 'Enter message',
+              messageController: _messageController,
+              onTap: sendMessage,
+            ),
 
             const SizedBox(
-              height: 25,
+              height: 20,
             ),
           ],
         ),
@@ -146,37 +150,6 @@ class _ChatPageState extends State<ChatPage> {
           ChatBubble(
             message: data['message'],
             backgroundColor: backgroundColor,
-          ),
-        ],
-      ),
-    );
-  }
-
-  // build message input
-  Widget _buildMessageInput() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: Row(
-        children: [
-          // text field
-          Expanded(
-            child: ReusableTextField(
-              controller: _messageController,
-              hintText: 'Enter Message',
-              obscureText: false,
-              inChatRoom: true,
-              borderRadius: 35,
-            ),
-          ),
-
-          // send button
-          IconButton(
-            onPressed: sendMessage,
-            icon: Icon(
-              Icons.arrow_circle_up,
-              size: 40,
-              color: Colors.grey.shade500,
-            ),
           ),
         ],
       ),

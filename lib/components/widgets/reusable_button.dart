@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_chat_messenger_app/config/app_colors.dart';
 import 'package:flutter_chat_messenger_app/config/app_size.dart';
 
 class ReusableButton extends StatelessWidget {
@@ -18,7 +19,7 @@ class ReusableButton extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(getProportionateScreenWidth(20)),
         decoration:  BoxDecoration(
-          color: Colors.black,
+          color: AppColors.darkColor,
           borderRadius: BorderRadius.circular(9),
         ),
         child: Center(

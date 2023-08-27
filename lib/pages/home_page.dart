@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   // text controller
-  TextEditingController _messageController = TextEditingController();
+  final TextEditingController _messageController = TextEditingController();
 
   // sign user out
   void signOut() {
@@ -54,6 +54,7 @@ class _HomePageState extends State<HomePage> {
         'email': _currentUser!.email,
         'post': _messageController.text,
         'timestamp': Timestamp.now(),
+        'likes': [],
       });
     }
 
@@ -103,6 +104,8 @@ class _HomePageState extends State<HomePage> {
                         return WallPost(
                           message: post['post'],
                           user: post['email'],
+                          postId: post.id,
+                          likes: List<String>.from(post['likes'] ?? []),
                         );
                       },
                     );

@@ -24,10 +24,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     AppSize().init(context);
 
-    return const MaterialApp(
+    return  MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      home: AuthenticationGate(),
+      theme: ThemeData(
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+        // useMaterial3: true
+
+      ),
+      home: const AuthenticationGate(),
     );
   }
 }

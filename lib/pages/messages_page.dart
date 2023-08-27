@@ -42,18 +42,23 @@ class _MessagesPageState extends State<MessagesPage> {
       appBar: AppBar(
         title: const Text(
           "Messages",
-          style: TextStyle(
-            fontSize: 22,
-            fontWeight: FontWeight.w600,
-          ),
+          // style: TextStyle(
+          //   fontSize: 22,
+          //   fontWeight: FontWeight.w600,
+          // ),
         ),
-        actions: [
-          // sign out button
-          IconButton(
-            onPressed: signOut,
-            icon: const Icon(Icons.logout),
-          ),
-        ],
+        leading: GestureDetector(
+          onTap: () => Navigator.of(context).pop(),
+          child: const Icon(Icons.arrow_back_ios),
+        ),
+        centerTitle: true,
+        // actions: [
+        //   // sign out button
+        //   IconButton(
+        //     onPressed: signOut,
+        //     icon: const Icon(Icons.logout),
+        //   ),
+        // ],
         foregroundColor: Colors.white,
         backgroundColor: AppColors.darkColor,
       ),

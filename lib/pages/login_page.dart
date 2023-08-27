@@ -52,7 +52,8 @@ class _LoginPageState extends State<LoginPage> {
       );
 
       // pop the loading circle
-      if (context.mounted) Navigator.of(context).pop();
+      if (!mounted) return;
+      Navigator.of(context).pop();
 
       // show when successfully logged in
       showSuccessSnackBar(
@@ -62,7 +63,8 @@ class _LoginPageState extends State<LoginPage> {
       );
     } catch (e) {
       // pop the circle
-      if (context.mounted) Navigator.of(context).pop();
+      if (!mounted) return;
+      Navigator.of(context).pop();
 
       // show if there is any error
       showErrorSnackBar(

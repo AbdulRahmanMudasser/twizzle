@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_messenger_app/components/methods/snack_bar.dart';
 import 'package:flutter_chat_messenger_app/services/authentication/auth_service.dart';
@@ -56,18 +57,26 @@ class _RegisterPageState extends State<RegisterPage> {
 
     // try sign up
     try {
-      await authenticationService.signUpWithEmailAndPassword(
+      // create the user
+      UserCredential userCredential = await authenticationService.signUpWithEmailAndPassword(
         nameController.text,
         emailController.text,
         passwordController.text,
       );
+
+      // after creating the user, create a new document in cloud firestore called users
+      // FirebaseFirestore.instance.collection('users').doc(userCredential.user!.email).set({
+      //   'username': emailController.text.split('@')[0],   // initial username
+      //   'bio': 'Empty bio',   // initially empty bio
+      // });
 
       // authenticationService.sendEmailVerification();
 
       // showErrorSnackBar('Email Verification Sent!', scaffoldMessenger);
 
       // pop loading circle
-      if (context.mounted) Navigator.of(context).pop();
+      if (!mounted) return;
+      Navigator.of(context).pop();
 
       // show when successfully signed up
       showSuccessSnackBar(
@@ -76,7 +85,8 @@ class _RegisterPageState extends State<RegisterPage> {
       );
     } catch (e) {
       // pop loading circle
-      if (context.mounted) Navigator.of(context).pop();
+      if (!mounted) return;
+      Navigator.of(context).pop();
 
       // show if there is any error
       showErrorSnackBar(

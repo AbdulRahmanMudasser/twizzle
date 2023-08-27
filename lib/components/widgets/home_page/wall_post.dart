@@ -120,17 +120,17 @@ class _WallPostState extends State<WallPost> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  widget.user,
-                  style: TextStyle(
-                    color: Colors.grey[500],
-                  ),
+                  widget.message,
+                  softWrap: true,
                 ),
                 const SizedBox(
                   height: 10,
                 ),
                 Text(
-                  widget.message,
-                  softWrap: true,
+                  widget.user,
+                  style: TextStyle(
+                    color: Colors.grey[500],
+                  ),
                 ),
               ],
             ),

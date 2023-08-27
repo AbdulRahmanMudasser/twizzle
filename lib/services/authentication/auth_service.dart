@@ -68,6 +68,7 @@ class AuthenticationService extends ChangeNotifier {
           'uid': credential.user!.uid,
           'name': name,
           'email': email,
+          'bio': 'Empty bio',
         },
       );
 
@@ -106,6 +107,7 @@ class AuthenticationService extends ChangeNotifier {
         'uid': userCredential.user!.uid,
         'name': userCredential.user!.displayName,
         'email': userCredential.user!.email,
+        'bio': 'Empty bio',
       });
 
       return userCredential;

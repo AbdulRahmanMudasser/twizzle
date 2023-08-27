@@ -8,7 +8,7 @@ Widget buildMessageInput({
   required GestureTapCallback onTap,
 }) {
   return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 10),
+    padding: const EdgeInsets.symmetric(horizontal: 20),
     child: Row(
       children: [
         // text field
@@ -18,7 +18,6 @@ Widget buildMessageInput({
             hintText: hintText,
             obscureText: false,
             inChatRoom: true,
-            borderRadius: 35,
           ),
         ),
 

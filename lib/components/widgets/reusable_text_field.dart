@@ -7,14 +7,12 @@ class ReusableTextField extends StatelessWidget {
     required this.hintText,
     required this.obscureText,
     this.inChatRoom = false,
-    this.borderRadius = 0,
   });
 
   final TextEditingController controller;
   final String hintText;
   final bool obscureText;
   final bool inChatRoom;
-  final double borderRadius;
 
   @override
   Widget build(BuildContext context) {
@@ -31,20 +29,20 @@ class ReusableTextField extends StatelessWidget {
           borderSide: const BorderSide(
             color: Colors.white,
           ),
-          borderRadius: BorderRadius.circular(borderRadius),
+          borderRadius: BorderRadius.circular(8),
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
             color: Colors.grey.shade400,
             width: 1,
           ),
-          borderRadius: BorderRadius.circular(borderRadius),
+          borderRadius: BorderRadius.circular(8),
         ),
         fillColor: Colors.grey[200],
         filled: true,
         hintText: hintText,
         hintStyle: TextStyle(color: Colors.grey.shade500),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 30, vertical: 18),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
       ),
     );
   }

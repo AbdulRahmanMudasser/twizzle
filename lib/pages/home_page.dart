@@ -2,9 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_messenger_app/components/methods/message_input.dart';
+import 'package:flutter_chat_messenger_app/components/widgets/home_page/drawer/drawer.dart';
 import 'package:flutter_chat_messenger_app/components/widgets/home_page/wall_post.dart';
 import 'package:flutter_chat_messenger_app/config/app_colors.dart';
 import 'package:flutter_chat_messenger_app/config/app_size.dart';
+import 'package:flutter_chat_messenger_app/pages/messages_page.dart';
+import 'package:flutter_chat_messenger_app/pages/profile_page.dart';
 import 'package:provider/provider.dart';
 
 import '../components/methods/snack_bar.dart';
@@ -64,6 +67,32 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  // navigate to profile page
+  void goToProfile() {
+    // pop menu drawer
+    Navigator.pop(context);
+
+    // go to profile page
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const ProfilePage(),
+      ),
+    );
+  }
+
+  // navigate to messages page
+  void goToMessages() {
+    // pop menu drawer
+    Navigator.of(context).pop();
+
+    // go to message page
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const MessagesPage(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,15 +102,20 @@ class _HomePageState extends State<HomePage> {
           "The Wall",
         ),
         centerTitle: true,
-        actions: [
-          // sign out button
-          IconButton(
-            onPressed: signOut,
-            icon: const Icon(Icons.logout),
-          ),
-        ],
+        // actions: [
+        //   // sign out button
+        //   IconButton(
+        //     onPressed: signOut,
+        //     icon: const Icon(Icons.logout),
+        //   ),
+        // ],
         foregroundColor: Colors.white,
         backgroundColor: AppColors.darkColor,
+      ),
+      drawer: MyDrawer(
+        onProfile: goToProfile,
+        onMessages: goToMessages,
+        onLogout: signOut,
       ),
       body: Center(
         child: Column(
